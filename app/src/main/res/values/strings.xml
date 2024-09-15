@@ -3,4 +3,5 @@
     <string name="estado_placeholder">ESTADO_PLACEHOLDER</string>
     <string name="time_placeholder">TIME_PLACEHOLDER</string>
     <string name="buscar_club">Buscar club</string>
+    <string name="club_name_placeholder">NOMBRE_CLUB_PLACEHOLDER</string>
 </resources>
