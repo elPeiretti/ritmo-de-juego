@@ -2,4 +2,5 @@
     <string name="app_name">Ritmo de Juego</string>
     <string name="estado_placeholder">ESTADO_PLACEHOLDER</string>
     <string name="time_placeholder">TIME_PLACEHOLDER</string>
+    <string name="buscar_club">Buscar club</string>
 </resources>

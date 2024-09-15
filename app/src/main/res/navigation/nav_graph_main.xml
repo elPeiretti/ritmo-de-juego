@@ -8,5 +8,14 @@
         android:id="@+id/ritmoDeJuegoFragment"
         android:name="com.elpeiretti.ritmodejuego.fragment.main.RitmoDeJuegoFragment"
         android:label="fragment_ritmo_de_juego"
-        tools:layout="@layout/fragment_ritmo_de_juego" />
+        tools:layout="@layout/fragment_ritmo_de_juego" >
+        <action
+            android:id="@+id/action_ritmoDeJuegoFragment_to_clubsFragment"
+            app:destination="@id/clubsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clubsFragment"
+        android:name="com.elpeiretti.ritmodejuego.fragment.main.ClubsFragment"
+        android:label="fragment_clubs"
+        tools:layout="@layout/fragment_clubs" />
 </navigation>
