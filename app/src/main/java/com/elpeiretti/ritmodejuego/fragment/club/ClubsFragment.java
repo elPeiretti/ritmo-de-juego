@@ -1,4 +1,4 @@
-package com.elpeiretti.ritmodejuego.fragment.main;
+package com.elpeiretti.ritmodejuego.fragment.club;
 
 import android.os.Bundle;
 
