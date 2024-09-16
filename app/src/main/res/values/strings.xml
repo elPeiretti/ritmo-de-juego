@@ -4,4 +4,5 @@
     <string name="time_placeholder">TIME_PLACEHOLDER</string>
     <string name="buscar_club">Buscar club</string>
     <string name="club_name_placeholder">NOMBRE_CLUB_PLACEHOLDER</string>
+    <string name="hoyo_number_placeholder">HOYO_PLACEHOLDER</string>
 </resources>
