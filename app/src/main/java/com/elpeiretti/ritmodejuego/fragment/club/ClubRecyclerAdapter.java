@@ -3,19 +3,45 @@ package com.elpeiretti.ritmodejuego.fragment.club;
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.elpeiretti.ritmodejuego.databinding.RowClubBinding;
 import com.elpeiretti.ritmodejuego.domain.Club;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class ClubRecyclerAdapter extends RecyclerView.Adapter<ClubRecyclerAdapter.ViewHolder> {
+public class ClubRecyclerAdapter extends ListAdapter<Club, ClubRecyclerAdapter.ViewHolder> implements Filterable {
 
-    private List<Club> clubs;
+    private List<Club> clubs = new ArrayList<>();
+    private Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence string) {
+            FilterResults results = new FilterResults();
+            List<Club> filtered = clubs.stream().filter(c -> c.getName().toLowerCase().contains(string)).collect(Collectors.toList());
+            results.values = string.length() < 1 ? clubs : filtered;
+            results.count = string.length() < 1 ? clubs.size() : filtered.size();
+            return results;
+        }
+
+        @Override
+        @SuppressWarnings("unchecked")
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            submitList((List<Club>) filterResults.values);
+        }
+    };
+
+    public ClubRecyclerAdapter() {
+        super(new ClubDiffCallback());
+    }
 
     @NonNull
     @Override
@@ -31,8 +57,8 @@ public class ClubRecyclerAdapter extends RecyclerView.Adapter<ClubRecyclerAdapte
     }
 
     @Override
-    public int getItemCount() {
-        return clubs.size();
+    public Filter getFilter() {
+        return filter;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -49,7 +75,20 @@ public class ClubRecyclerAdapter extends RecyclerView.Adapter<ClubRecyclerAdapte
     public void setData(List<Club> clubs) {
         this.clubs.clear();
         this.clubs.addAll(clubs);
-        notifyDataSetChanged();
+        submitList(this.clubs);
+    }
+
+    private static class ClubDiffCallback extends DiffUtil.ItemCallback<Club> {
+
+        @Override
+        public boolean areItemsTheSame(@NonNull Club oldItem, @NonNull Club newItem) {
+            return oldItem.equals(newItem);
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull Club oldItem, @NonNull Club newItem) {
+            return areItemsTheSame(oldItem, newItem);
+        }
     }
 
 }
