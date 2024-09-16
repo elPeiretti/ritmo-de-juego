@@ -15,7 +15,7 @@
     </fragment>
     <fragment
         android:id="@+id/clubsFragment"
-        android:name="com.elpeiretti.ritmodejuego.fragment.club.ClubsFragment"
+        android:name="com.elpeiretti.ritmodejuego.fragment.club.search.ClubsFragment"
         android:label="fragment_clubs"
         tools:layout="@layout/fragment_clubs" />
 </navigation>

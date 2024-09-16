@@ -1,4 +1,4 @@
-package com.elpeiretti.ritmodejuego.fragment.club;
+package com.elpeiretti.ritmodejuego.fragment.club.search;
 
 import android.os.Bundle;
 
@@ -8,8 +8,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +17,6 @@ import com.elpeiretti.ritmodejuego.domain.Club;
 import com.elpeiretti.ritmodejuego.util.TextChangedListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ClubsFragment extends Fragment {
 

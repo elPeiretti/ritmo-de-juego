@@ -1,4 +1,4 @@
-package com.elpeiretti.ritmodejuego.fragment.club;
+package com.elpeiretti.ritmodejuego.fragment.club.search;
 
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
