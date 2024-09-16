@@ -30,6 +30,7 @@ public class ClubsFragment extends Fragment {
         RecyclerView recycler = binding.clubsRecycler;
         recycler.setLayoutManager(new LinearLayoutManager(this.requireContext()));
         recycler.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+        ClubRecyclerAdapter adapter = new ClubRecyclerAdapter();
         // TODO: update with repository
         ArrayList<Club> clubList = new ArrayList<>();
         for(int i=1; i<11; i++) {
@@ -38,7 +39,8 @@ public class ClubsFragment extends Fragment {
             c.setName("Club Number " + i);
             clubList.add(c);
         }
-        recycler.setAdapter(new ClubRecyclerAdapter(clubList));
+        adapter.setData(clubList);
+        recycler.setAdapter(adapter);
         return binding.getRoot();
     }
 }

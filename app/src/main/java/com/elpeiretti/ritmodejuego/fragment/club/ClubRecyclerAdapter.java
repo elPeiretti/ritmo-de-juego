@@ -1,5 +1,6 @@
 package com.elpeiretti.ritmodejuego.fragment.club;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -15,10 +16,6 @@ import java.util.List;
 public class ClubRecyclerAdapter extends RecyclerView.Adapter<ClubRecyclerAdapter.ViewHolder> {
 
     private List<Club> clubs;
-
-    public ClubRecyclerAdapter(List<Club> clubs) {
-        this.clubs = clubs;
-    }
 
     @NonNull
     @Override
@@ -46,6 +43,13 @@ public class ClubRecyclerAdapter extends RecyclerView.Adapter<ClubRecyclerAdapte
             super(rowBinding.getRoot());
             clubName = rowBinding.clubName;
         }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    public void setData(List<Club> clubs) {
+        this.clubs.clear();
+        this.clubs.addAll(clubs);
+        notifyDataSetChanged();
     }
 
 }
