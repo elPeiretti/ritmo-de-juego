@@ -17,5 +17,14 @@
         android:id="@+id/clubsFragment"
         android:name="com.elpeiretti.ritmodejuego.fragment.club.search.ClubsFragment"
         android:label="fragment_clubs"
-        tools:layout="@layout/fragment_clubs" />
+        tools:layout="@layout/fragment_clubs" >
+        <action
+            android:id="@+id/action_clubsFragment_to_editarClubFragment"
+            app:destination="@id/editarClubFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarClubFragment"
+        android:name="com.elpeiretti.ritmodejuego.fragment.club.edit.EditarClubFragment"
+        android:label="fragment_editar_club"
+        tools:layout="@layout/fragment_editar_club" />
 </navigation>
