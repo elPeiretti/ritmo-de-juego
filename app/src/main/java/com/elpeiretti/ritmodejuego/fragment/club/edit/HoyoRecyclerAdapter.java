@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.elpeiretti.ritmodejuego.databinding.RowHoyoBinding;
 import com.elpeiretti.ritmodejuego.domain.Hoyo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapter.ViewHolder> {
 
-    private List<Hoyo> hoyos;
+    private List<Hoyo> hoyos = new ArrayList<>();
 
     @NonNull
     @Override
