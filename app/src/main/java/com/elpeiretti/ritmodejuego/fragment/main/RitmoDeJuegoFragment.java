@@ -19,6 +19,8 @@ public class RitmoDeJuegoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentRitmoDeJuegoBinding.inflate(inflater, container, false);
+        binding.horaSalida.setFragmentManagerSupplier(this::getChildFragmentManager);
+        binding.horaJuego.setFragmentManagerSupplier(this::getChildFragmentManager);
         return binding.getRoot();
     }
 }

@@ -67,13 +67,14 @@
                 android:layout_marginEnd="5dp"
                 android:inputType="number" />
 
-            <EditText
+            <com.elpeiretti.ritmodejuego.component.CustomTimePicker
                 android:id="@+id/hora_salida"
+                app:title="Hora de salida"
+                android:label="@string/hora_de_salida_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="5dp"
-                android:inputType="number"/>
+                android:layout_marginStart="5dp" />
 
         </LinearLayout>
 
@@ -93,8 +94,10 @@
                 android:layout_marginEnd="5dp"
                 android:inputType="number" />
 
-            <EditText
+            <com.elpeiretti.ritmodejuego.component.CustomTimePicker
                 android:id="@+id/hora_Juego"
+                app:title="Hora de juego"
+                android:label="@string/hora_de_juego_label"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

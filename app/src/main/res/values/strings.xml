@@ -10,4 +10,6 @@
     <string name="par_label">Par:</string>
     <string name="handicap_label">Handicap:</string>
     <string name="time_input_placeholder">HH:MM</string>
+    <string name="hora_de_salida_label">Hora de salida:</string>
+    <string name="hora_de_juego_label">Hora de juego:</string>
 </resources>
