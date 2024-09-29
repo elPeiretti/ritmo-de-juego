@@ -48,6 +48,8 @@ dependencies {
     implementation(libs.navigation.dynamic.features.fragment)
     // fragment
     implementation(libs.fragment)
+    // material
+    implementation(libs.material)
 
     testImplementation(libs.junit)
 

@@ -9,4 +9,5 @@
     <string name="label_placeholder">LABEL_PLACEHOLDER</string>
     <string name="par_label">Par:</string>
     <string name="handicap_label">Handicap:</string>
+    <string name="time_input_placeholder">HH:MM</string>
 </resources>

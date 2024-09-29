@@ -4,4 +4,7 @@
         <attr name="android:label" />
         <attr name="android:inputType" />
     </declare-styleable>
+    <declare-styleable name="CustomTimePicker">
+        <attr name="android:label" />
+    </declare-styleable>
 </resources>
