@@ -6,5 +6,6 @@
     </declare-styleable>
     <declare-styleable name="CustomTimePicker">
         <attr name="android:label" />
+        <attr name="title" />
     </declare-styleable>
 </resources>

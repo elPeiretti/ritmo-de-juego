@@ -22,7 +22,9 @@ import java.util.function.Supplier;
 public class CustomTimePicker extends LinearLayout {
 
     private final CustomTimePickerBinding binding;
+
     private MaterialTimePicker timePicker;
+    private final String pickerTitle;
     private Supplier<FragmentManager> fragmentManagerSupplier;
 
     public CustomTimePicker(Context context, @Nullable AttributeSet attrs) {
@@ -31,9 +33,10 @@ public class CustomTimePicker extends LinearLayout {
 
         try (TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CustomTimePicker)) {
             binding.label.setText(array.getString(R.styleable.CustomTimePicker_android_label));
+            pickerTitle = array.getString(R.styleable.CustomTimePicker_title);
         }
 
-        createTimePicker(); // Ver si mover adentro del listener
+        createTimePicker();
         binding.timeInput.setOnClickListener(view -> {
             if (fragmentManagerSupplier == null) {
                 Log.w("CustomTimePicker","FragmentManagerSupplier NOT SET!");
@@ -51,7 +54,7 @@ public class CustomTimePicker extends LinearLayout {
                 .setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
                 .setHour(LocalTime.now().getHour())
                 .setMinute(LocalTime.now().getMinute())
-                .setTitleText("Title TEST")
+                .setTitleText(pickerTitle)
                 .build();
 
         timePicker.addOnPositiveButtonClickListener(view ->
