@@ -1,6 +1,7 @@
 package com.elpeiretti.ritmodejuego.domain;
 
 import java.time.Duration;
+import java.util.List;
 
 public class Hoyo {
 
@@ -17,6 +18,27 @@ public class Hoyo {
         this.par = par;
         this.handicap = handicap;
     }
+
+    public static List<Hoyo> TEST_LIST = List.of(
+            new Hoyo(1L, (short) 1, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(2L, (short) 2, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(3L, (short) 3, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(4L, (short) 4, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(5L, (short) 5, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(6L, (short) 6, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(7L, (short) 7, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(8L, (short) 8, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(9L, (short) 9, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(10L, (short) 10, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(11L, (short) 11, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(12L, (short) 12, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(13L, (short) 13, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(14L, (short) 14, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(15L, (short) 15, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(16L, (short) 16, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(17L, (short) 17, Duration.ofMinutes(15), 4, 4),
+            new Hoyo(18L, (short) 18, Duration.ofMinutes(15), 4, 4)
+    );
 
     public Long getId() {
         return id;

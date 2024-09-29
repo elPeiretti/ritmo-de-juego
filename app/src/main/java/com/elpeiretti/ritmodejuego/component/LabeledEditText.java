@@ -25,4 +25,8 @@ public class LabeledEditText extends LinearLayout {
             binding.input.setInputType(array.getInt(R.styleable.LabeledEditText_android_inputType, InputType.TYPE_CLASS_NUMBER));
         }
     }
+
+    public void setText(CharSequence text) {
+        binding.input.setText(text);
+    }
 }

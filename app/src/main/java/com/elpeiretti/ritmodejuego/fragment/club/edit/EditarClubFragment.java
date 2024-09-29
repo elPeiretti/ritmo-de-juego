@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.elpeiretti.ritmodejuego.databinding.FragmentEditarClubBinding;
+import com.elpeiretti.ritmodejuego.domain.Hoyo;
 
 public class EditarClubFragment extends Fragment {
 
@@ -26,9 +27,9 @@ public class EditarClubFragment extends Fragment {
         RecyclerView recycler = binding.hoyosRecycler;
         recycler.setLayoutManager(new LinearLayoutManager(this.requireContext()));
         recycler.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
-        HoyoRecyclerAdapter adapter = new HoyoRecyclerAdapter();
+        HoyoRecyclerAdapter adapter = new HoyoRecyclerAdapter(this::getChildFragmentManager);
         recycler.setAdapter(adapter);
-
+        adapter.setHoyos(Hoyo.TEST_LIST);
         return binding.getRoot();
     }
 }

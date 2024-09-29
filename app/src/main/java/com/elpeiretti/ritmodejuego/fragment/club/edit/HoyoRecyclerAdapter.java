@@ -7,18 +7,26 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.elpeiretti.ritmodejuego.component.CustomTimeInput;
 import com.elpeiretti.ritmodejuego.component.LabeledEditText;
 import com.elpeiretti.ritmodejuego.databinding.RowHoyoBinding;
 import com.elpeiretti.ritmodejuego.domain.Hoyo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapter.ViewHolder> {
 
     private List<Hoyo> hoyos = new ArrayList<>();
+    private final Supplier<FragmentManager> fragmentManagerSupplier;
+
+    public HoyoRecyclerAdapter(Supplier<FragmentManager> fragmentManagerSupplier) {
+        this.fragmentManagerSupplier = fragmentManagerSupplier;
+    }
 
     @NonNull
     @Override
@@ -33,6 +41,10 @@ public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapte
         Hoyo hoyo = hoyos.get(position);
 
         holder.numeroHoyo.setText("Hoyo "+hoyo.getNumber());
+        holder.tiempoHoyo.setTime(hoyo.getTiempo());
+        holder.tiempoHoyo.setFragmentManagerSupplier(this.fragmentManagerSupplier);
+        holder.parHoyo.setText(hoyo.getPar().toString());
+        holder.handicapHoyo.setText(hoyo.getHandicap().toString());
     }
 
     @Override
@@ -43,7 +55,7 @@ public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView numeroHoyo;
-        EditText tiempoHoyo;
+        CustomTimeInput tiempoHoyo;
         LabeledEditText parHoyo;
         LabeledEditText handicapHoyo;
 
