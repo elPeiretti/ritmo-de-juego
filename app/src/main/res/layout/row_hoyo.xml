@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <EditText
+            <com.elpeiretti.ritmodejuego.component.CustomTimeInput
                 android:id="@+id/tiempo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

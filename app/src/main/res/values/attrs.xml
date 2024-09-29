@@ -8,4 +8,5 @@
         <attr name="android:label" />
         <attr name="title" />
     </declare-styleable>
+    <declare-styleable name="CustomTimeInput" />
 </resources>
