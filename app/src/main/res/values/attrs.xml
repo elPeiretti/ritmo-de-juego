@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LabeledEditText">
+        <attr name="android:label" />
+        <attr name="android:inputType" />
+    </declare-styleable>
+</resources>

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.elpeiretti.ritmodejuego.component.LabeledEditText;
 import com.elpeiretti.ritmodejuego.databinding.RowHoyoBinding;
 import com.elpeiretti.ritmodejuego.domain.Hoyo;
 
@@ -43,8 +44,8 @@ public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapte
 
         TextView numeroHoyo;
         EditText tiempoHoyo;
-        EditText parHoyo;
-        EditText handicapHoyo;
+        LabeledEditText parHoyo;
+        LabeledEditText handicapHoyo;
 
         public ViewHolder(RowHoyoBinding rowBinding) {
             super(rowBinding.getRoot());

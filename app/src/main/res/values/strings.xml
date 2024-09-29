@@ -6,4 +6,7 @@
     <string name="club_name_placeholder">NOMBRE_CLUB_PLACEHOLDER</string>
     <string name="hoyo_number_placeholder">HOYO_PLACEHOLDER</string>
     <string name="guardar">Guardar</string>
+    <string name="label_placeholder">LABEL_PLACEHOLDER</string>
+    <string name="par_label">Par:</string>
+    <string name="handicap_label">Handicap:</string>
 </resources>
