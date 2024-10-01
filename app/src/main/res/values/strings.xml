@@ -13,4 +13,7 @@
     <string name="hora_de_salida_label">Hora de salida:</string>
     <string name="hora_de_juego_label">Hora de juego:</string>
     <string name="tiempo_label">Tiempo:</string>
+    <string name="clubs">Clubs</string>
+    <string name="crear_club">Crear club</string>
+    <string name="eliminar_club">Eliminar club</string>
 </resources>
