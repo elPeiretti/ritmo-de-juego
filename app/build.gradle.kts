@@ -53,7 +53,7 @@ dependencies {
     implementation(libs.material)
     // firebase
     implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.database)
 
     testImplementation(libs.junit)
 
