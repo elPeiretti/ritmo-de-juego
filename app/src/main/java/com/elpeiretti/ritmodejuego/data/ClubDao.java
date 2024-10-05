@@ -1,5 +1,7 @@
 package com.elpeiretti.ritmodejuego.data;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import com.elpeiretti.ritmodejuego.domain.Club;
@@ -10,6 +12,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ClubDao {
 
@@ -45,6 +49,7 @@ public class ClubDao {
                 for (DataSnapshot data : snapshot.getChildren()) {
                     Club club = data.getValue(Club.class);
                     if (club != null) {
+                        club.setHoyos(club.getHoyos().stream().filter(Objects::nonNull).collect(Collectors.toList()));
                         club.setId(data.getKey());
                         clubs.add(club);
                     }
