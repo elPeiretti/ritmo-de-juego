@@ -72,9 +72,11 @@ public class ClubRecyclerAdapter extends ListAdapter<Club, ClubRecyclerAdapter.V
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setData(List<Club> clubs) {
+    public void updateData(List<Club> clubs) {
         this.clubs.clear();
         this.clubs.addAll(clubs);
+        // i am sorry :(
+        submitList(null);
         submitList(this.clubs);
     }
 

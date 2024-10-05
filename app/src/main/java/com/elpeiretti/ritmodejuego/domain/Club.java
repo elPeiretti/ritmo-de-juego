@@ -1,11 +1,14 @@
 package com.elpeiretti.ritmodejuego.domain;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Club {
 
-    private Long id;
+    @Exclude
+    private String id;
     private String name;
     private List<Hoyo> hoyos;
 
@@ -13,17 +16,11 @@ public class Club {
         this.hoyos = new ArrayList<>();
     }
 
-    public Club(Long id, String name, List<Hoyo> hoyos) {
-        this.id = id;
-        this.name = name;
-        this.hoyos = hoyos;
-    }
-
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
