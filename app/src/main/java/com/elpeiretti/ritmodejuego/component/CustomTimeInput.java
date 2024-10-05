@@ -14,7 +14,6 @@ import com.elpeiretti.ritmodejuego.databinding.CustomTimePickerBinding;
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
-import java.time.Duration;
 import java.util.Locale;
 import java.util.function.Supplier;
 
@@ -75,9 +74,9 @@ public class CustomTimeInput extends LinearLayout {
         return minute;
     }
 
-    public void setTime(Duration time) {
-        hour = (int) time.toHours();
-        minute = (int) time.toMinutes();
+    public void setTime(int horas, int minutos) {
+        hour = horas;
+        minute = minutos;
         updateInputText();
     }
 
