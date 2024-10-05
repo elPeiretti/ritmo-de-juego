@@ -1,5 +1,6 @@
 package com.elpeiretti.ritmodejuego.fragment.club.edit;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,22 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.elpeiretti.ritmodejuego.MainActivity;
 import com.elpeiretti.ritmodejuego.databinding.FragmentEditarClubBinding;
+
 
 public class EditarClubFragment extends Fragment {
 
     private FragmentEditarClubBinding binding;
+    private MainActivity activity;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof MainActivity)
+            activity = (MainActivity) context;
+    }
 
     @Nullable
     @Override
@@ -28,6 +40,9 @@ public class EditarClubFragment extends Fragment {
         recycler.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
         HoyoRecyclerAdapter adapter = new HoyoRecyclerAdapter(this::getChildFragmentManager);
         recycler.setAdapter(adapter);
+
+        adapter.setHoyos(activity.getSelectedClub().getHoyos());
+
         return binding.getRoot();
     }
 }

@@ -10,10 +10,12 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.elpeiretti.ritmodejuego.databinding.ActivityMainBinding;
+import com.elpeiretti.ritmodejuego.domain.Club;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding viewBinding;
+    private Club selectedClub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,5 +55,13 @@ public class MainActivity extends AppCompatActivity {
         Menu menu = viewBinding.toolbar.getMenu();
         for (int i=0 ; i<menu.size(); i++)
             menu.getItem(i).setVisible(i == itemIndex);
+    }
+
+    public void setSelectedClub(Club club) {
+        this.selectedClub = club;
+    }
+
+    public Club getSelectedClub() {
+        return this.selectedClub;
     }
 }
