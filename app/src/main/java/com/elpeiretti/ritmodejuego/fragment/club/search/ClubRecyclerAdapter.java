@@ -17,6 +17,7 @@ import com.elpeiretti.ritmodejuego.domain.Club;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class ClubRecyclerAdapter extends ListAdapter<Club, ClubRecyclerAdapter.ViewHolder> implements Filterable {
@@ -38,6 +39,7 @@ public class ClubRecyclerAdapter extends ListAdapter<Club, ClubRecyclerAdapter.V
             submitList((List<Club>) filterResults.values);
         }
     };
+    private Consumer<Club> onRowClickedListener;
 
     public ClubRecyclerAdapter() {
         super(new ClubDiffCallback());
@@ -54,6 +56,7 @@ public class ClubRecyclerAdapter extends ListAdapter<Club, ClubRecyclerAdapter.V
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Club club = clubs.get(position);
         holder.clubName.setText(club.getName());
+        holder.itemView.setOnClickListener(view -> onRowClickedListener.accept(club));
     }
 
     @Override
@@ -78,6 +81,10 @@ public class ClubRecyclerAdapter extends ListAdapter<Club, ClubRecyclerAdapter.V
         // i am sorry :(
         submitList(null);
         submitList(this.clubs);
+    }
+
+    public void setOnRowClickedListener(Consumer<Club> listener) {
+        this.onRowClickedListener = listener;
     }
 
     private static class ClubDiffCallback extends DiffUtil.ItemCallback<Club> {
