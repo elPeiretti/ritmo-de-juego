@@ -59,13 +59,16 @@
             app:layout_constraintTop_toBottomOf="@id/club_autocomplete"
             android:layout_marginVertical="10dp">
 
-            <EditText
+            <com.elpeiretti.ritmodejuego.component.CustomNumberPicker
                 android:id="@+id/hoyo_salida"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="5dp"
-                android:inputType="number" />
+                android:label="@string/hoyo_de_salida_label"
+                app:title="Seleccione el hoyo de salida"
+                android:valueFrom="1"
+                android:valueTo="18" />
 
             <com.elpeiretti.ritmodejuego.component.CustomTimePicker
                 android:id="@+id/hora_salida"
@@ -86,13 +89,17 @@
             app:layout_constraintTop_toBottomOf="@id/layout_salida"
             android:layout_marginVertical="10dp">
 
-            <EditText
+            <com.elpeiretti.ritmodejuego.component.CustomNumberPicker
                 android:id="@+id/hoyo_juego"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginEnd="5dp"
-                android:inputType="number" />
+                android:inputType="number"
+                android:label="@string/hoyo_en_juego_label"
+                app:title="Seleccione el hoyo en juego"
+                android:valueFrom="1"
+                android:valueTo="18" />
 
             <com.elpeiretti.ritmodejuego.component.CustomTimePicker
                 android:id="@+id/hora_Juego"

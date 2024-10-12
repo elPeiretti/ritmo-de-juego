@@ -16,4 +16,7 @@
     <string name="clubs">Clubs</string>
     <string name="crear_club">Crear club</string>
     <string name="eliminar_club">Eliminar club</string>
+    <string name="selected_number">selected number</string>
+    <string name="hoyo_de_salida_label">Hoyo de salida:</string>
+    <string name="hoyo_en_juego_label">Hoyo en juego:</string>
 </resources>
