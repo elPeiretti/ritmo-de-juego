@@ -3,7 +3,6 @@ package com.elpeiretti.ritmodejuego.fragment.club.edit;
 import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,19 +12,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.elpeiretti.ritmodejuego.component.CustomTimeInput;
 import com.elpeiretti.ritmodejuego.component.LabeledEditText;
 import com.elpeiretti.ritmodejuego.databinding.RowHoyoBinding;
+import com.elpeiretti.ritmodejuego.domain.Club;
 import com.elpeiretti.ritmodejuego.domain.Hoyo;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Supplier;
 
 public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapter.ViewHolder> {
 
-    private List<Hoyo> hoyos = new ArrayList<>();
+    private Club club;
     private final Supplier<FragmentManager> fragmentManagerSupplier;
 
-    public HoyoRecyclerAdapter(Supplier<FragmentManager> fragmentManagerSupplier) {
+    public HoyoRecyclerAdapter(Supplier<FragmentManager> fragmentManagerSupplier, Club club) {
         this.fragmentManagerSupplier = fragmentManagerSupplier;
+        this.club = club;
     }
 
     @NonNull
@@ -38,7 +37,7 @@ public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapte
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Hoyo hoyo = hoyos.get(position);
+        Hoyo hoyo = club.getHoyos().get(position);
 
         holder.numeroHoyo.setText("Hoyo "+hoyo.getNumber());
 
@@ -50,11 +49,28 @@ public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapte
             holder.parHoyo.setText(hoyo.getPar().toString());
         if (hoyo.getHandicap() != null)
             holder.handicapHoyo.setText(hoyo.getHandicap().toString());
+
+        setListeners(holder, hoyo);
     }
 
     @Override
     public int getItemCount() {
-        return hoyos.size();
+        return club.getHoyos().size();
+    }
+
+    private void setListeners(ViewHolder holder, Hoyo hoyo) {
+        holder.parHoyo.addTextChangedListener(editable -> {
+            Integer par = editable.toString().isBlank() ? null : Integer.valueOf(editable.toString());
+            hoyo.setPar(par);
+        });
+        holder.handicapHoyo.addTextChangedListener(editable -> {
+            Integer hpc = editable.toString().isBlank() ? null : Integer.valueOf(editable.toString());
+            hoyo.setHandicap(hpc);
+        });
+        holder.tiempoHoyo.addTimeChangedListener((h,m) -> {
+            hoyo.setHoras(h);
+            hoyo.setMinutos(m);
+        });
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -71,12 +87,6 @@ public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapte
             parHoyo = rowBinding.par;
             handicapHoyo = rowBinding.handicap;
         }
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    public void setHoyos(List<Hoyo> hoyos) {
-        this.hoyos = hoyos;
-        notifyDataSetChanged();
     }
 
 }

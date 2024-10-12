@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.elpeiretti.ritmodejuego.R;
 import com.elpeiretti.ritmodejuego.databinding.LabeledEditTextBinding;
+import com.elpeiretti.ritmodejuego.util.TextChangedListener;
 
 public class LabeledEditText extends LinearLayout {
 
@@ -28,5 +29,9 @@ public class LabeledEditText extends LinearLayout {
 
     public void setText(CharSequence text) {
         binding.input.setText(text);
+    }
+
+    public void addTextChangedListener(TextChangedListener listener) {
+        binding.input.addTextChangedListener(listener);
     }
 }

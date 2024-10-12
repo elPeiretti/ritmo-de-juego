@@ -1,13 +1,10 @@
 package com.elpeiretti.ritmodejuego.domain;
 
-import java.time.Duration;
-import java.util.List;
-
 public class Hoyo {
 
     private Integer number;
-    private Integer horas;
-    private Integer minutos;
+    private Integer horas = 0;
+    private Integer minutos = 0;
     private Integer par;
     private Integer handicap;
 
@@ -76,5 +73,11 @@ public class Hoyo {
 
     public void setMinutos(Integer minutos) {
         this.minutos = minutos;
+    }
+
+    public boolean hasNullValues() {
+        return number == null || horas == null ||
+                minutos == null || par == null ||
+                handicap == null;
     }
 }

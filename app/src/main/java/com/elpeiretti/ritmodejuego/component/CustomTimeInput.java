@@ -15,6 +15,7 @@ import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
 
 import java.util.Locale;
+import java.util.function.BiConsumer;
 import java.util.function.Supplier;
 
 public class CustomTimeInput extends LinearLayout {
@@ -78,6 +79,11 @@ public class CustomTimeInput extends LinearLayout {
         hour = horas;
         minute = minutos;
         updateInputText();
+    }
+
+    public void addTimeChangedListener(BiConsumer<Integer, Integer> listener) {
+        timePicker.addOnPositiveButtonClickListener(view ->
+            listener.accept(hour, minute));
     }
 
     private void updateInputText() {
