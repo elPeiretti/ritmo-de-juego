@@ -51,6 +51,7 @@ public class EditarClubFragment extends Fragment {
 
         if (club.getId() == null) {
             activity.setToolbalTitle("Crear Club");
+            activity.setMenuItemVisible(-1);
         }
         else {
             binding.clubName.setText(club.getName());

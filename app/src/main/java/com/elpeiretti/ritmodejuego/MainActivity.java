@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(viewBinding.getRoot());
     }
 
-    private void setMenuItemVisible(int itemIndex) {
+    public void setMenuItemVisible(int itemIndex) {
         Menu menu = viewBinding.toolbar.getMenu();
         for (int i=0 ; i<menu.size(); i++)
             menu.getItem(i).setVisible(i == itemIndex);
