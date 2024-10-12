@@ -2,7 +2,9 @@ package com.elpeiretti.ritmodejuego.component;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.InputFilter;
 import android.text.InputType;
+import android.text.Spanned;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -24,6 +26,9 @@ public class LabeledEditText extends LinearLayout {
         try (TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.LabeledEditText)) {
             binding.label.setText(array.getString(R.styleable.LabeledEditText_android_label));
             binding.input.setInputType(array.getInt(R.styleable.LabeledEditText_android_inputType, InputType.TYPE_CLASS_NUMBER));
+            int maxLength = array.getInt(R.styleable.LabeledEditText_android_maxLength, -1);
+            if (maxLength != -1)
+                binding.input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(maxLength)});
         }
     }
 

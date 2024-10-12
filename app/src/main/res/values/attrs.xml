@@ -3,6 +3,7 @@
     <declare-styleable name="LabeledEditText">
         <attr name="android:label" />
         <attr name="android:inputType" />
+        <attr name="android:maxLength" />
     </declare-styleable>
     <declare-styleable name="CustomTimePicker">
         <attr name="android:label" />
