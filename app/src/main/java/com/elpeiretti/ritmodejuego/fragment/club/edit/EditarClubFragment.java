@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.elpeiretti.ritmodejuego.MainActivity;
 import com.elpeiretti.ritmodejuego.databinding.FragmentEditarClubBinding;
+import com.elpeiretti.ritmodejuego.domain.Club;
 
 
 public class EditarClubFragment extends Fragment {
@@ -41,7 +42,15 @@ public class EditarClubFragment extends Fragment {
         HoyoRecyclerAdapter adapter = new HoyoRecyclerAdapter(this::getChildFragmentManager);
         recycler.setAdapter(adapter);
 
-        adapter.setHoyos(activity.getSelectedClub().getHoyos());
+        Club club = activity.getSelectedClub();
+
+        adapter.setHoyos(club.getHoyos());
+        if (club.getId() == null) {
+            activity.setToolbalTitle("Crear Club");
+        }
+        else {
+            binding.clubName.setText(club.getName());
+        }
 
         return binding.getRoot();
     }

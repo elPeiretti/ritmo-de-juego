@@ -13,6 +13,10 @@ public class Hoyo {
 
     public Hoyo() {}
 
+    public Hoyo(int number) {
+        this.number = number;
+    }
+
 //    public static List<Hoyo> TEST_LIST = List.of(
 //            new Hoyo(1, Duration.ofMinutes(15), 4, 4),
 //            new Hoyo(2, Duration.ofMinutes(15), 4, 4),

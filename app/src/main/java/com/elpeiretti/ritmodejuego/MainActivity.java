@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
                 navController.navigate(R.id.action_ritmoDeJuegoFragment_to_clubsFragment);
                 return true;
             } else if (item.getItemId() == R.id.action_crear_club) {
+                selectedClub = new Club();
                 navController.navigate(R.id.action_clubsFragment_to_editarClubFragment);
                 return true;
             }
@@ -63,5 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
     public Club getSelectedClub() {
         return this.selectedClub;
+    }
+
+    public void setToolbalTitle(String text) {
+        viewBinding.toolbar.setTitle(text);
     }
 }

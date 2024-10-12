@@ -14,6 +14,10 @@ public class Club {
 
     public Club() {
         this.hoyos = new ArrayList<>();
+        for (int i=1; i<=18; i++) {
+            Hoyo h = new Hoyo(i);
+            this.hoyos.add(h);
+        }
     }
 
     public String getId() {

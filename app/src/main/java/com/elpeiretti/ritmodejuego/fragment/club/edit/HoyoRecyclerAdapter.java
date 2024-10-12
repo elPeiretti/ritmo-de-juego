@@ -41,10 +41,15 @@ public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapte
         Hoyo hoyo = hoyos.get(position);
 
         holder.numeroHoyo.setText("Hoyo "+hoyo.getNumber());
-        holder.tiempoHoyo.setTime(hoyo.getHoras(), hoyo.getMinutos());
+
         holder.tiempoHoyo.setFragmentManagerSupplier(this.fragmentManagerSupplier);
-        holder.parHoyo.setText(hoyo.getPar().toString());
-        holder.handicapHoyo.setText(hoyo.getHandicap().toString());
+        if (hoyo.getHoras() != null && hoyo.getMinutos() != null)
+            holder.tiempoHoyo.setTime(hoyo.getHoras(), hoyo.getMinutos());
+
+        if (hoyo.getPar() != null)
+            holder.parHoyo.setText(hoyo.getPar().toString());
+        if (hoyo.getHandicap() != null)
+            holder.handicapHoyo.setText(hoyo.getHandicap().toString());
     }
 
     @Override
