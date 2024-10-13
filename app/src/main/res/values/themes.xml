@@ -5,9 +5,14 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:colorBackground">@color/white</item>
         <item name="android:fontFamily">@font/poppins</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
     </style>
 
     <style name="Theme.RitmoDeJuego" parent="Base.Theme.RitmoDeJuego" />
+
+    <style name="PositiveButtonStyle" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/primary</item>
+    </style>
 
     <style name="Theme.App.Starting" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/white</item>
