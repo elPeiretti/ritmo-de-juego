@@ -1,9 +1,11 @@
 package com.elpeiretti.ritmodejuego.fragment.main;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -14,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.elpeiretti.ritmodejuego.R;
 import com.elpeiretti.ritmodejuego.data.ClubDao;
 import com.elpeiretti.ritmodejuego.databinding.FragmentRitmoDeJuegoBinding;
 import com.elpeiretti.ritmodejuego.domain.Club;
@@ -87,11 +90,13 @@ public class RitmoDeJuegoFragment extends Fragment {
         int demora = horaJuego*60 + minJuego - total;
 
         if (demora>0) {
-            binding.estadoText.setText("DEMORADO");
+            binding.estadoText.setText(R.string.estado_demorado);
             binding.estadoTime.setVisibility(View.VISIBLE);
+            binding.estadoLayout.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.demorado_border));
             binding.estadoTime.setText(String.format(String.format(Locale.getDefault(),"%02d:%02d", demora/60, demora%60)));
         } else {
-            binding.estadoText.setText("EN HORARIO");
+            binding.estadoText.setText(R.string.estado_en_horario);
+            binding.estadoLayout.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.en_horario_border));
             binding.estadoTime.setVisibility(View.GONE);
         }
 
