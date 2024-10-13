@@ -1,10 +1,16 @@
 package com.elpeiretti.ritmodejuego;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.splashscreen.SplashScreen;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setupSplashScreen();
         super.onCreate(savedInstanceState);
         viewBinding = ActivityMainBinding.inflate(getLayoutInflater());
 
@@ -89,5 +96,26 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNeutralButton("Cancelar", null)
                 .show();
+    }
+
+    private void setupSplashScreen() {
+        SplashScreen splashScreen = SplashScreen.installSplashScreen(this);
+        splashScreen.setOnExitAnimationListener(splashScreenViewProvider -> {
+            final ObjectAnimator slideUp = ObjectAnimator.ofFloat(
+                    splashScreenViewProvider.getView(),
+                    View.TRANSLATION_Y,
+                    0f,
+                    -splashScreenViewProvider.getView().getHeight()
+            );
+            slideUp.setInterpolator(new AccelerateInterpolator());
+            slideUp.setDuration(500L);
+            slideUp.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    splashScreenViewProvider.remove();
+                }
+            });
+            slideUp.start();
+        });
     }
 }

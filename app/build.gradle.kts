@@ -54,6 +54,8 @@ dependencies {
     // firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.database)
+    // splashscreen
+    implementation(libs.core.splashscreen)
 
     testImplementation(libs.junit)
 
