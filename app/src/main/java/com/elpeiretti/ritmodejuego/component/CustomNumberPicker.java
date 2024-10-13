@@ -2,6 +2,7 @@ package com.elpeiretti.ritmodejuego.component;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.Editable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
@@ -12,6 +13,9 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.elpeiretti.ritmodejuego.R;
 import com.elpeiretti.ritmodejuego.databinding.CustomNumberPickerBinding;
+import com.elpeiretti.ritmodejuego.util.TextChangedListener;
+
+import java.util.function.Consumer;
 
 public class CustomNumberPicker extends LinearLayout {
 
@@ -46,6 +50,19 @@ public class CustomNumberPicker extends LinearLayout {
         binding.numberInput.setOnClickListener(view -> {
             dialog.show();
         });
+    }
+
+    public Integer getSelectedNumber() {
+        String number = binding.numberInput.getText().toString();
+
+        return number.isEmpty()
+                ? null
+                : Integer.valueOf(number);
+    }
+
+    public void setNumberChangedListener(Consumer<Integer> listener) {
+        binding.numberInput.addTextChangedListener((TextChangedListener) editable ->
+                listener.accept(getSelectedNumber()));
     }
 
 }
