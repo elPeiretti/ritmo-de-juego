@@ -40,8 +40,12 @@ public class CustomNumberPicker extends LinearLayout {
         AlertDialog dialog = new AlertDialog.Builder(context)
                 .setTitle(dialogTitle)
                 .setView(numberPicker)
-                .setPositiveButton("Ok", (dialogInterface, i) -> {
+                .setPositiveButton("OK", (dialogInterface, i) -> {
                     binding.numberInput.setText(String.valueOf(numberPicker.getValue()));
+                })
+                .setOnDismissListener(dialogInterface -> {
+                    Integer oldNumber = getSelectedNumber();
+                    numberPicker.setValue(oldNumber == null ? numberPicker.getMinValue() : oldNumber);
                 })
                 .create();
 
