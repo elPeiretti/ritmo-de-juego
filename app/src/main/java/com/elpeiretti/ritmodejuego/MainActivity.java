@@ -8,9 +8,11 @@ import android.view.Menu;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -64,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
                 setMenuItemVisible(0);
         });
 
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {}
+        });
         setMenuItemVisible(0);
         setContentView(viewBinding.getRoot());
     }
