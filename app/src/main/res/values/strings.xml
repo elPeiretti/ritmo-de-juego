@@ -20,4 +20,5 @@
     <string name="hoyo_de_salida_label">Hoyo de salida:</string>
     <string name="hoyo_en_juego_label">Hoyo en juego:</string>
     <string name="club">Club</string>
+    <string name="nombre_club_hint">Nombre del club</string>
 </resources>
