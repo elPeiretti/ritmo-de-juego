@@ -1,5 +1,7 @@
 package com.elpeiretti.ritmodejuego.domain;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.database.Exclude;
 
 import java.util.ArrayList;
@@ -18,6 +20,12 @@ public class Club {
             Hoyo h = new Hoyo(i);
             this.hoyos.add(h);
         }
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.name;
     }
 
     public String getId() {

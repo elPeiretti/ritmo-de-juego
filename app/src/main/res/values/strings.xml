@@ -19,4 +19,5 @@
     <string name="selected_number">selected number</string>
     <string name="hoyo_de_salida_label">Hoyo de salida:</string>
     <string name="hoyo_en_juego_label">Hoyo en juego:</string>
+    <string name="club">Club</string>
 </resources>
