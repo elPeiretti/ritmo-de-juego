@@ -14,27 +14,6 @@ public class Hoyo {
         this.number = number;
     }
 
-//    public static List<Hoyo> TEST_LIST = List.of(
-//            new Hoyo(1, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo(2, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo(3, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo(4, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo(5, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo(6, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo( 7, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo( 8, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo( 9, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo( 10, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo( 11, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo( 12, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo( 13, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo( 14, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo( 15, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo( 16, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo( 17, Duration.ofMinutes(15), 4, 4),
-//            new Hoyo( 18, Duration.ofMinutes(15), 4, 4)
-//    );
-
     public Integer getNumber() {
         return number;
     }

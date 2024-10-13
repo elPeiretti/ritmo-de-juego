@@ -2,7 +2,6 @@ package com.elpeiretti.ritmodejuego.component;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.text.Editable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;

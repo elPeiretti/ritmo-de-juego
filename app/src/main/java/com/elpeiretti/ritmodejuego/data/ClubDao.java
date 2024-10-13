@@ -1,7 +1,5 @@
 package com.elpeiretti.ritmodejuego.data;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.elpeiretti.ritmodejuego.domain.Club;
