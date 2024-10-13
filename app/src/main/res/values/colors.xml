@@ -3,6 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#437E00</color>
+    <color name="light_primary">#57804F</color>
+    <color name="gray">#6B6B6B</color>
     <color name="en_horario">#91FF95</color>
     <color name="demorado">#F7CB63</color>
 </resources>
