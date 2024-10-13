@@ -28,6 +28,9 @@ public class CustomTimePicker extends LinearLayout {
     private final String pickerTitle;
     private Supplier<FragmentManager> fragmentManagerSupplier;
 
+    private Integer hour = LocalTime.now().getHour();
+    private Integer minute = LocalTime.now().getMinute();
+
     public CustomTimePicker(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         binding = CustomTimePickerBinding.inflate(LayoutInflater.from(context), this, true);
@@ -53,30 +56,20 @@ public class CustomTimePicker extends LinearLayout {
         timePicker = new MaterialTimePicker.Builder()
                 .setTimeFormat(TimeFormat.CLOCK_24H)
                 .setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
-                .setHour(LocalTime.now().getHour())
-                .setMinute(LocalTime.now().getMinute())
+                .setHour(hour)
+                .setMinute(minute)
                 .setTitleText(pickerTitle)
                 .build();
 
-        timePicker.addOnPositiveButtonClickListener(view ->
-           binding.timeInput.setText(String.format(Locale.getDefault(),"%02d:%02d", timePicker.getHour(), timePicker.getMinute()))
-        );
+        timePicker.addOnPositiveButtonClickListener(view -> {
+            hour = timePicker.getHour();
+            minute = timePicker.getMinute();
+            binding.timeInput.setText(String.format(Locale.getDefault(), "%02d:%02d", timePicker.getHour(), timePicker.getMinute()));
+        });
     }
 
     public void setFragmentManagerSupplier(Supplier<FragmentManager> supplier) {
         this.fragmentManagerSupplier = supplier;
-    }
-
-    public Integer getHour() {
-        if (binding.timeInput.getText().toString().isEmpty())
-            return null;
-        return timePicker.getHour();
-    }
-
-    public Integer getMinute() {
-        if (binding.timeInput.getText().toString().isEmpty())
-            return null;
-        return timePicker.getMinute();
     }
 
     public void addTimeChangedListener(BiConsumer<Integer, Integer> listener) {
@@ -84,4 +77,15 @@ public class CustomTimePicker extends LinearLayout {
                 listener.accept(timePicker.getHour(), timePicker.getMinute()));
     }
 
+    public Integer getHour() {
+        if (binding.timeInput.getText().toString().isEmpty())
+            return null;
+        return hour;
+    }
+
+    public Integer getMinute() {
+        if (binding.timeInput.getText().toString().isEmpty())
+            return null;
+        return minute;
+    }
 }
