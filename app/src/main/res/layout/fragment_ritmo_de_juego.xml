@@ -20,7 +20,7 @@
             android:inputType="text"
             android:completionThreshold="1"/>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:id="@+id/estado_layout"
@@ -29,31 +29,28 @@
             app:layout_constraintBottom_toTopOf="@id/layout_tiempos"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginVertical="10dp">
+            android:layout_marginVertical="10dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/estado_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/estado_time"
                 android:gravity="center"
-                android:layout_marginBottom="10dp"
-                android:textSize="36sp"
+                android:textSize="32sp"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="@string/estado_placeholder" />
 
             <TextView
                 android:id="@+id/estado_time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/estado_text"
                 android:gravity="center"
-                android:textSize="28sp"
-                android:fontFamily="@font/poppins_semibold"
+                android:textSize="32sp"
                 android:visibility="gone" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/layout_tiempos"
@@ -90,7 +87,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginVertical="20dp">
+            android:layout_marginVertical="10dp">
 
             <com.elpeiretti.ritmodejuego.component.CustomNumberPicker
                 android:id="@+id/hoyo_salida"
