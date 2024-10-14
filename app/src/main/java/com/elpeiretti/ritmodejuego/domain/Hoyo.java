@@ -4,7 +4,7 @@ public class Hoyo {
 
     private Integer number;
     private Integer horas = 0;
-    private Integer minutos = 0;
+    private Integer minutos = 15;
     private Integer par;
     private Integer handicap;
 
