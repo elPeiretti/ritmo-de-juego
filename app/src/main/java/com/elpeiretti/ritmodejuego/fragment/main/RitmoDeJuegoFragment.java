@@ -1,7 +1,6 @@
 package com.elpeiretti.ritmodejuego.fragment.main;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -35,9 +34,7 @@ public class RitmoDeJuegoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentRitmoDeJuegoBinding.inflate(inflater, container, false);
-        binding.horaSalida.setFragmentManagerSupplier(this::getChildFragmentManager);
         binding.horaSalida.addTimeChangedListener((h,m) -> updateEstado());
-        binding.horaJuego.setFragmentManagerSupplier(this::getChildFragmentManager);
         binding.horaJuego.addTimeChangedListener((h,m) -> updateEstado());
         binding.hoyoJuego.setNumberChangedListener(i -> updateEstado());
         binding.hoyoSalida.setNumberChangedListener(i -> updateEstado());
@@ -78,8 +75,12 @@ public class RitmoDeJuegoFragment extends Fragment {
         Integer minJuego = binding.horaJuego.getMinute();
 
         if (selectedClub == null || hoyoSalida == null || hoyoJuego == null ||
-            horaJuego == null || minJuego == null || horaSalida == null || minSalida == null)
+            horaJuego == null || minJuego == null || horaSalida == null || minSalida == null) {
+            binding.estadoText.setText(R.string.estado_placeholder);
+            binding.estadoLayout.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.border));
+            binding.estadoTime.setVisibility(View.GONE);
             return;
+        }
 
         int tiempoAcum = 0;
         for (int i = hoyoSalida; i < hoyoJuego; i++) {

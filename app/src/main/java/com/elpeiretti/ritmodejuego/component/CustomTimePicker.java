@@ -2,34 +2,25 @@ package com.elpeiretti.ritmodejuego.component;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentManager;
 
 import com.elpeiretti.ritmodejuego.R;
 import com.elpeiretti.ritmodejuego.databinding.CustomTimePickerBinding;
-import com.google.android.material.timepicker.MaterialTimePicker;
-import com.google.android.material.timepicker.TimeFormat;
 
-import java.time.LocalTime;
-import java.util.Locale;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.BiConsumer;
-import java.util.function.Supplier;
 
 public class CustomTimePicker extends LinearLayout {
 
     private final CustomTimePickerBinding binding;
-
-    private MaterialTimePicker timePicker;
-    private final String pickerTitle;
-    private Supplier<FragmentManager> fragmentManagerSupplier;
-
-    private Integer hour = LocalTime.now().getHour();
-    private Integer minute = LocalTime.now().getMinute();
+    private final List<BiConsumer<Integer, Integer>> timeChangedListeners = new ArrayList<>();
 
     public CustomTimePicker(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -37,55 +28,83 @@ public class CustomTimePicker extends LinearLayout {
 
         try (TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CustomTimePicker)) {
             binding.label.setText(array.getString(R.styleable.CustomTimePicker_android_label));
-            pickerTitle = array.getString(R.styleable.CustomTimePicker_title);
         }
 
-        createTimePicker();
-        binding.timeInput.setOnClickListener(view -> {
-            if (fragmentManagerSupplier == null) {
-                Log.w("CustomTimePicker","FragmentManagerSupplier NOT SET!");
-                return;
-            }
-            timePicker.show(fragmentManagerSupplier.get(), "timePicker");
-        });
-        binding.timeInput.setFocusable(false);
+        binding.timeInput.addTextChangedListener(getTextWatcher());
 
-    }
-
-    private void createTimePicker() {
-        timePicker = new MaterialTimePicker.Builder()
-                .setTimeFormat(TimeFormat.CLOCK_24H)
-                .setInputMode(MaterialTimePicker.INPUT_MODE_CLOCK)
-                .setHour(hour)
-                .setMinute(minute)
-                .setTitleText(pickerTitle)
-                .build();
-
-        timePicker.addOnPositiveButtonClickListener(view -> {
-            hour = timePicker.getHour();
-            minute = timePicker.getMinute();
-            binding.timeInput.setText(String.format(Locale.getDefault(), "%02d:%02d", timePicker.getHour(), timePicker.getMinute()));
-        });
-    }
-
-    public void setFragmentManagerSupplier(Supplier<FragmentManager> supplier) {
-        this.fragmentManagerSupplier = supplier;
     }
 
     public void addTimeChangedListener(BiConsumer<Integer, Integer> listener) {
-        timePicker.addOnPositiveButtonClickListener(view ->
-                listener.accept(timePicker.getHour(), timePicker.getMinute()));
+        timeChangedListeners.add(listener);
     }
 
     public Integer getHour() {
-        if (binding.timeInput.getText().toString().isEmpty())
+        String text = binding.timeInput.getText().toString();
+        if (text.isEmpty() || text.length() < 3)
             return null;
-        return hour;
+        return Integer.valueOf(text.substring(0,2));
     }
 
     public Integer getMinute() {
-        if (binding.timeInput.getText().toString().isEmpty())
+        String text = binding.timeInput.getText().toString();
+        if (text.isEmpty() || text.length() < 5)
             return null;
-        return minute;
+        return Integer.valueOf(text.substring(3,5));
+    }
+
+    private TextWatcher getTextWatcher() {
+        return new TextWatcher(){
+
+            boolean deleted = false;
+            boolean edited = false;
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                deleted = count == 0;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                int length = editable.length();
+                if (length == 0 || edited) return;
+                char added = editable.charAt(length-1);
+
+                if (added < '0' || added > '9') {
+                    editable.delete(length-1, length);
+                }
+                else if (length == 1 && added > '2') {
+                    withoutTriggering(() -> {
+                        editable.clear();
+                        editable.append(String.format("0%c:",added));
+                    });
+                }
+                else if (length == 2) {
+                    if (!deleted)
+                        withoutTriggering(() -> editable.append(':'));
+                    else
+                        editable.delete(length-1, length);
+                }
+                else if (length == 4 && added > '5') {
+                    withoutTriggering(() -> {
+                        editable.delete(length-1, length);
+                        editable.append(String.format("0%c",added));
+                    });
+                }
+                else if (length > 5) {
+                    withoutTriggering(() -> editable.delete(length-1, length));
+                    return;
+                }
+                timeChangedListeners.forEach(l -> l.accept(getHour(), getMinute()));
+            }
+
+            private void withoutTriggering(Runnable r) {
+                edited = true;
+                r.run();
+                edited = false;
+            }
+        };
     }
 }

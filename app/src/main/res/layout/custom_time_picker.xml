@@ -19,10 +19,9 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:drawableEnd="@drawable/baseline_access_time_24"
-            android:inputType="none"
+            android:inputType="time"
             android:hint="@string/time_input_placeholder"
-            android:drawablePadding="10dp"
-            android:saveEnabled="false"/>
+            android:drawablePadding="10dp" />
 
     </LinearLayout>
 </layout>
