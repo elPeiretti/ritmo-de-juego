@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
@@ -29,6 +30,14 @@ public class RitmoDeJuegoFragment extends Fragment {
     private ArrayAdapter<Club> clubAdapter;
 
     private Club selectedClub;
+
+    @Override
+    public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
+        super.onViewStateRestored(savedInstanceState);
+        binding.horaSalida.clear();
+        binding.horaJuego.clear();
+        updateEstado();
+    }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,

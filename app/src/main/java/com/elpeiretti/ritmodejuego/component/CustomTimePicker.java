@@ -52,6 +52,10 @@ public class CustomTimePicker extends LinearLayout {
         return Integer.valueOf(text.substring(3,5));
     }
 
+    public void clear() {
+        binding.timeInput.setText("");
+    }
+
     private TextWatcher getTextWatcher() {
         return new TextWatcher(){
 
