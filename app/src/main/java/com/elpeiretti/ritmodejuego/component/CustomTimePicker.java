@@ -76,7 +76,7 @@ public class CustomTimePicker extends LinearLayout {
                 if (length == 0 || edited) return;
                 char added = editable.charAt(length-1);
 
-                if (added < '0' || added > '9') {
+                if (!(added == ':' && deleted) && (added < '0' || added > '9')) {
                     editable.delete(length-1, length);
                 }
                 else if (length == 1 && added > '2') {
@@ -86,7 +86,7 @@ public class CustomTimePicker extends LinearLayout {
                     });
                 }
                 else if (length == 2) {
-                    if (!deleted && added < '4')
+                    if (!deleted && (editable.charAt(0) < '2' || added < '4'))
                         withoutTriggering(() -> editable.append(':'));
                     else
                         editable.delete(length-1, length);
