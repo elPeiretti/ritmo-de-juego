@@ -91,11 +91,7 @@ public class RitmoDeJuegoFragment extends Fragment {
             return;
         }
 
-        int tiempoAcum = 0;
-        for (int i = hoyoSalida; i < hoyoJuego; i++) {
-            Hoyo h = selectedClub.getHoyos().get(i - 1);
-            tiempoAcum += h.getHoras() * 60 + h.getMinutos();
-        }
+        int tiempoAcum = calcTiempoAcum(hoyoSalida, hoyoJuego);
         int total = horaSalida * 60 + minSalida + tiempoAcum;
         int demora = horaJuego*60 + minJuego - total;
 
@@ -110,6 +106,27 @@ public class RitmoDeJuegoFragment extends Fragment {
             binding.estadoTime.setVisibility(View.GONE);
         }
 
+    }
+
+    private int calcTiempoAcum(Integer hoyoSalida, Integer hoyoJuego) {
+        int tiempoAcum = 0;
+        if (hoyoSalida > hoyoJuego) {
+            for (int i = hoyoSalida; i < 19; i++) {
+                Hoyo h = selectedClub.getHoyos().get(i - 1);
+                tiempoAcum += h.getHoras() * 60 + h.getMinutos();
+            }
+            for (int i = 1; i < hoyoJuego; i++) {
+                Hoyo h = selectedClub.getHoyos().get(i - 1);
+                tiempoAcum += h.getHoras() * 60 + h.getMinutos();
+            }
+        }
+        else {
+            for (int i = hoyoSalida; i < hoyoJuego; i++) {
+                Hoyo h = selectedClub.getHoyos().get(i - 1);
+                tiempoAcum += h.getHoras() * 60 + h.getMinutos();
+            }
+        }
+        return tiempoAcum;
     }
 
 }
