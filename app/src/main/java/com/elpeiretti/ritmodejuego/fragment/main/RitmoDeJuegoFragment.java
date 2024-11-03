@@ -97,15 +97,15 @@ public class RitmoDeJuegoFragment extends Fragment {
 
         if (demora>0) {
             binding.estadoText.setText(R.string.estado_demorado);
-            binding.estadoTime.setVisibility(View.VISIBLE);
             binding.estadoLayout.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.demorado_border));
-            binding.estadoTime.setText(String.format(String.format(Locale.getDefault(),"%02d:%02d", demora/60, demora%60)));
         } else {
             binding.estadoText.setText(R.string.estado_en_horario);
             binding.estadoLayout.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.en_horario_border));
-            binding.estadoTime.setVisibility(View.GONE);
+            demora *= -1;
         }
 
+        binding.estadoTime.setText(String.format(String.format(Locale.getDefault(),"%02d:%02d", demora/60, demora%60)));
+        binding.estadoTime.setVisibility(View.VISIBLE);
     }
 
     private int calcTiempoAcum(Integer hoyoSalida, Integer hoyoJuego) {
