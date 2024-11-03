@@ -1,8 +1,10 @@
 package com.elpeiretti.ritmodejuego.fragment.club.edit;
 
 import android.annotation.SuppressLint;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -10,10 +12,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.elpeiretti.ritmodejuego.component.CustomTimeInput;
+import com.elpeiretti.ritmodejuego.component.CustomTimePicker;
 import com.elpeiretti.ritmodejuego.component.LabeledEditText;
 import com.elpeiretti.ritmodejuego.databinding.RowHoyoBinding;
 import com.elpeiretti.ritmodejuego.domain.Club;
 import com.elpeiretti.ritmodejuego.domain.Hoyo;
+import com.elpeiretti.ritmodejuego.util.TextChangedListener;
 
 import java.util.function.Supplier;
 
@@ -39,12 +43,10 @@ public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapte
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Hoyo hoyo = club.getHoyos().get(position);
 
-        holder.numeroHoyo.setText("Hoyo "+hoyo.getNumber());
+        holder.numeroHoyo.setText(hoyo.getNumber().toString());
 
-        holder.tiempoHoyo.setFragmentManagerSupplier(this.fragmentManagerSupplier);
         if (hoyo.getHoras() != null && hoyo.getMinutos() != null)
             holder.tiempoHoyo.setTime(hoyo.getHoras(), hoyo.getMinutos());
-
         if (hoyo.getPar() != null)
             holder.parHoyo.setText(hoyo.getPar().toString());
         if (hoyo.getHandicap() != null)
@@ -59,11 +61,11 @@ public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapte
     }
 
     private void setListeners(ViewHolder holder, Hoyo hoyo) {
-        holder.parHoyo.addTextChangedListener(editable -> {
+        holder.parHoyo.addTextChangedListener((TextChangedListener) editable -> {
             Integer par = editable.toString().isBlank() ? null : Integer.valueOf(editable.toString());
             hoyo.setPar(par);
         });
-        holder.handicapHoyo.addTextChangedListener(editable -> {
+        holder.handicapHoyo.addTextChangedListener((TextChangedListener) editable -> {
             Integer hpc = editable.toString().isBlank() ? null : Integer.valueOf(editable.toString());
             hoyo.setHandicap(hpc);
         });
@@ -76,9 +78,9 @@ public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView numeroHoyo;
-        CustomTimeInput tiempoHoyo;
-        LabeledEditText parHoyo;
-        LabeledEditText handicapHoyo;
+        CustomTimePicker tiempoHoyo;
+        EditText parHoyo;
+        EditText handicapHoyo;
 
         public ViewHolder(RowHoyoBinding rowBinding) {
             super(rowBinding.getRoot());
@@ -86,6 +88,8 @@ public class HoyoRecyclerAdapter extends RecyclerView.Adapter<HoyoRecyclerAdapte
             tiempoHoyo = rowBinding.tiempo;
             parHoyo = rowBinding.par;
             handicapHoyo = rowBinding.handicap;
+
+            tiempoHoyo.setLabelVisibility(ViewGroup.GONE);
         }
     }
 

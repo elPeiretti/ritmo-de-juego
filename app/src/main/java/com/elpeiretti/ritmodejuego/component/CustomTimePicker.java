@@ -15,6 +15,7 @@ import com.elpeiretti.ritmodejuego.databinding.CustomTimePickerBinding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.function.BiConsumer;
 
 public class CustomTimePicker extends LinearLayout {
@@ -54,6 +55,14 @@ public class CustomTimePicker extends LinearLayout {
 
     public void clear() {
         binding.timeInput.setText("");
+    }
+
+    public void setTime(int h, int m) {
+        binding.timeInput.setText(String.format(Locale.getDefault(), "%02d:%02d", h, m));
+    }
+
+    public void setLabelVisibility(int visibility) {
+        binding.label.setVisibility(visibility);
     }
 
     private TextWatcher getTextWatcher() {

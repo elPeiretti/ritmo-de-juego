@@ -4,7 +4,7 @@
     <string name="time_placeholder">TIME_PLACEHOLDER</string>
     <string name="buscar_club">Buscar club</string>
     <string name="club_name_placeholder">NOMBRE_CLUB_PLACEHOLDER</string>
-    <string name="hoyo_number_placeholder">HOYO_PLACEHOLDER</string>
+    <string name="hoyo_number_placeholder">XX</string>
     <string name="guardar">Guardar</string>
     <string name="label_placeholder">LABEL_PLACEHOLDER</string>
     <string name="par_label">Par:</string>
@@ -23,4 +23,6 @@
     <string name="nombre_club_hint">Nombre del club</string>
     <string name="estado_demorado">DEMORADO</string>
     <string name="estado_en_horario">EN HORARIO</string>
+    <string name="par_hint">Par</string>
+    <string name="handicap_hint">HPC</string>
 </resources>

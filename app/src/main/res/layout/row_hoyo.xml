@@ -1,48 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingVertical="10dp">
+        android:orientation="horizontal"
+        android:paddingVertical="7dp">
 
         <TextView
             android:id="@+id/numero"
-            android:layout_width="match_parent"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             style="@style/subtitle"
+            android:layout_gravity="center"
+            android:textAlignment="center"
             android:text="@string/hoyo_number_placeholder"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:layout_weight="0.1"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.divider.MaterialDivider
+            android:layout_width="2dp"
+            android:layout_height="match_parent"
+            app:dividerColor="@color/light_primary"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="10dp"/>
+
+        <com.elpeiretti.ritmodejuego.component.CustomTimePicker
+            android:id="@+id/tiempo"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_weight="1.5" />
 
-            <com.elpeiretti.ritmodejuego.component.CustomTimeInput
-                android:id="@+id/tiempo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/par"
+            android:autofillHints="par, number"
+            android:hint="@string/par_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:maxLength="1" />
 
-            <com.elpeiretti.ritmodejuego.component.LabeledEditText
-                android:id="@+id/par"
-                android:label="@string/par_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxLength="1" />
-
-            <com.elpeiretti.ritmodejuego.component.LabeledEditText
-                android:id="@+id/handicap"
-                android:label="@string/handicap_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:maxLength="2" />
-
-        </LinearLayout>
+        <EditText
+            android:id="@+id/handicap"
+            android:hint="@string/handicap_hint"
+            android:autofillHints="handicap, hpc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:maxLength="1" />
 
     </LinearLayout>
     
